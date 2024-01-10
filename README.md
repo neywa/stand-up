@@ -1,1 +1,1 @@
-# stand-up
+stand-up is a short application that displays a timer counting one hour and notifying the user to stand up (or sit down) when working at computer for longer time. The idea is to make regular use of a standing desk. Initial interval for stand up/sit down is 1 hour.
