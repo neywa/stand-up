@@ -1,11 +1,8 @@
-import os
 from tkinter import *
 from tkinter import ttk
-# import tkinter as tk
-# import time
+from playsound import playsound
 
-
-def countdown(total_seconds=60, total_minutes=60):
+def countdown(total_seconds=0, total_minutes=1):
     if total_seconds == 60:
         total_seconds -= 1
         total_minutes -= 1
@@ -25,7 +22,9 @@ def countdown(total_seconds=60, total_minutes=60):
         timer_text.config(text=f"{total_minutes}:0{total_seconds}")
         mainframe.after(1000, countdown, total_seconds, total_minutes)   
     elif total_seconds == 0 and total_minutes == 0:
-        pass
+        playsound('bell.mp3')
+        countdown()
+#        pass
     else:
         total_seconds -= 1
         timer_text.config(text=f"{total_minutes}:{total_seconds}")
@@ -34,16 +33,15 @@ def countdown(total_seconds=60, total_minutes=60):
 
 root = Tk()
 root.title("Stand up")
-# window.config(padx=100, pady=50)
 mainframe = ttk.Frame(root, padding="3 3 12 12")
 mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
-timer_text = ttk.Label(mainframe, text="TIMER", width=5)
-timer_text.grid(column=1, row=1, sticky=E)
+timer_text = ttk.Label(mainframe, text="STAND-UP")
+timer_text.grid(column=0, row=0, padx=15)
 
 start_button = ttk.Button(mainframe, text="Start", command=countdown)
-start_button.grid(column=2, row=1, sticky=W)
+start_button.grid(column=1, row=0)
 
 mainframe.mainloop()
